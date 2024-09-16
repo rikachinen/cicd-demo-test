@@ -39,5 +39,6 @@ phases:
       - export AWS_SECRET_ACCESS_KEY="$(echo ${CREDENTIALS} | jq -r '.Credentials.SecretAccessKey')"
       - export AWS_SESSION_TOKEN="$(echo ${CREDENTIALS} | jq -r '.Credentials.SessionToken')"
       - export AWS_EXPIRATION=$(echo ${CREDENTIALS} | jq -r '.Credentials.Expiration')
-      - aws sts get-caller-identity
+      - aws eks update-kubeconfig --region ap-northeast-1 --name k8s-boy
+      - kubectl get svc
       - kubectl apply -f deployment.yml
